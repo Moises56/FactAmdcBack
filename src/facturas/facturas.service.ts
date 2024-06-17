@@ -20,7 +20,23 @@ export class FacturasService {
   }
 
   async findAll() {
-    const facturas = await this.prisma.factura.findMany();
+    //obtener todas las facturas y ordenarlas por fecha de creación de forma descendente
+    const facturas = await this.prisma.factura.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    // ahora el campo de mercado es un objeto id, por lo que se debe hacer un join con la tabla mercado para obtener el nombre del mercado
+    for (const fact of facturas) {
+      console.log(fact.mercado);
+      const mercado = await this.prisma.mercado.findUnique({
+        where: { id: fact.mercado },
+      });
+      // console.log(mercado.nombre_mercado);
+      fact.mercado = mercado.nombre_mercado;
+      // console.log(fact.mercado);
+    }
+
     return {
       data: facturas,
       message: 'Lista de facturas',
