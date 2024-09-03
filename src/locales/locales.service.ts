@@ -17,7 +17,7 @@ export class LocalesService {
 
     // Verificar si el local ya existe
     const local = await this.prisma.local.findFirst({
-      where: { nombre_local: data.nombre_local },
+      where: { numero_local: data.numero_local },
     });
     if (local) {
       throw new ForbiddenException('El local ya existe');
@@ -55,7 +55,7 @@ export class LocalesService {
     return {
       data: await this.prisma.local.findMany({
         orderBy: {
-          createdAt: 'desc',
+          numero_local: 'asc',
         },
       }),
       message: 'Lista de locales',
@@ -134,8 +134,15 @@ export class LocalesService {
   async findLocalesByMarketId(mercadoId: string) {
     const mercado = await this.prisma.mercado.findUnique({
       where: { id: mercadoId },
-      include: { Locales: true },
+      include: {
+        Locales: {
+          orderBy: {
+            numero_local: 'asc', // Ordenar por el campo 'numero_local' en orden ascendente
+          },
+        },
+      },
     });
+
     if (!mercado) {
       throw new ForbiddenException('El mercado no existe');
     }

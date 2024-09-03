@@ -23,18 +23,18 @@ export class MarketsController {
   constructor(private readonly marketsService: MarketsService) {}
 
   @ApiOperation({ summary: 'Obtener todos los mercados' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get()
   async allMarkets() {
     return this.marketsService.findAll();
   }
 
   @ApiOperation({ summary: 'Crear un nuevo mercado' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN)
   @Post()
   async createMarket(@Body() data: CreateMarketDto) {
     return this.marketsService.create(data);

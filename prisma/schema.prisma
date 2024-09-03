@@ -27,7 +27,7 @@ model Mercado {
 model Local {
   id                 String    @id @default(uuid())
   nombre_local       String
-  numero_local       Int
+  numero_local       String   
   permiso_operacion  String
   tipo_local         String
   direccion_local    String

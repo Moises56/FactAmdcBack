@@ -7,7 +7,7 @@ export class CreateLocaleDto {
 
   @IsNumber()
   @IsNotEmpty()
-  numero_local: number;
+  numero_local: string;
 
   @IsString()
   @IsNotEmpty()

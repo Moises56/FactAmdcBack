@@ -25,7 +25,7 @@ export class UsersService {
     });
 
     return {
-      d7ata: newUser,
+      data: newUser,
       message: 'Usuario creado con éxito',
       status: HttpStatus.CREATED,
     };
@@ -104,5 +104,6 @@ export class UsersService {
       status: HttpStatus.OK,
     };
   }
-  // Si hay un token, intentar verificar su validez
+
+  //* eviar correo electrónico de confirmación
 }

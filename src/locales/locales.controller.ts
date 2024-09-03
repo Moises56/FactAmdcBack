@@ -23,18 +23,18 @@ export class LocalesController {
   constructor(private readonly localesService: LocalesService) {}
 
   @ApiOperation({ summary: 'Obtener todos los locales' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get()
   async allLocales() {
     return this.localesService.findAll();
   }
 
   @ApiOperation({ summary: 'Crear un nuevo local' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN)
   @Post()
   async createLocale(@Body() createLocaleDto: CreateLocaleDto) {
     return this.localesService.create({
@@ -74,9 +74,9 @@ export class LocalesController {
   }
 
   @ApiOperation({ summary: 'Obtener todos los locales de un mercado' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get('mercado/:id')
   async getLocalesByMarketId(@Param('id') id: string) {
     return this.localesService.findLocalesByMarketId(id);
