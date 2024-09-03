@@ -11,7 +11,7 @@ import { ResendModule } from 'nestjs-resend';
     PrismaModule,
     ResendModule.forAsyncRoot({
       useFactory: async () => ({
-        apiKey: 're_AZnws2NW_9dZujNTq6dZuZXqGza2nQfob',
+        apiKey: process.env.KEY,
       }),
     }),
   ],
