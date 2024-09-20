@@ -1,8 +1,0 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `fechaFactura` on the `factura` table. All the data in the column will be lost.
-
-*/
--- AlterTable
-ALTER TABLE `factura` DROP COLUMN `fechaFactura`;
