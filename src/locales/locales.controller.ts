@@ -44,9 +44,9 @@ export class LocalesController {
   }
 
   @ApiOperation({ summary: 'Obtener un local por ID' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get(':id')
   async getLocale(@Param('id') id: string) {
     return this.localesService.findOne(id);
