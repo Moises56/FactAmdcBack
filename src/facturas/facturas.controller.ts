@@ -69,4 +69,11 @@ export class FacturasController {
   async deleteFactura(@Param('id') id: string) {
     return this.facturasService.remove(id);
   }
+
+  // Obtener facturas por ID de local
+  @ApiOperation({ summary: 'Obtener facturas por ID de local' })
+  @Get('local/:localId')
+  async getFacturasByLocal(@Param('localId') localId: string) {
+    return this.facturasService.findByLocal(localId);
+  }
 }

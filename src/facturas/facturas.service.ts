@@ -95,4 +95,25 @@ export class FacturasService {
       status: HttpStatus.OK,
     };
   }
+
+  async findByLocal(localId: string) {
+    // Obtener facturas por ID de local y ordenarlas por fecha de creación
+    const facturas = await this.prisma.factura.findMany({
+      where: { localId }, // Asegúrate de que el campo se llame localId en tu modelo
+      orderBy: { createdAt: 'desc' },
+    });
+
+    for (const fact of facturas) {
+      const mercado = await this.prisma.mercado.findUnique({
+        where: { id: fact.mercado },
+      });
+      fact.mercado = mercado.nombre_mercado; // Asignar el nombre del mercado
+    }
+
+    return {
+      data: facturas,
+      message: 'Lista de facturas por local',
+      status: HttpStatus.OK,
+    };
+  }
 }
