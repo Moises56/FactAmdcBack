@@ -9,6 +9,10 @@ export class CreateFacturaDto {
   @IsNotEmpty()
   propietario: string;
 
+  @IsString()
+  @IsNotEmpty()
+  nombre_local: string;
+
   @IsInt()
   @IsNotEmpty()
   numero_local: number;

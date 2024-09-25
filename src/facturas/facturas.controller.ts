@@ -23,36 +23,36 @@ export class FacturasController {
   constructor(private readonly facturasService: FacturasService) {}
 
   @ApiOperation({ summary: 'Obtener todas las facturas' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get()
   async allFacturas() {
     return this.facturasService.findAll();
   }
 
   @ApiOperation({ summary: 'Crear una nueva factura' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Post()
   async createFactura(@Body() createFacturaDto: CreateFacturaDto) {
     return this.facturasService.create(createFacturaDto);
   }
 
   @ApiOperation({ summary: 'Obtener una factura por ID' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN, Role.MARKET, Role.USER)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN, Role.MARKET, Role.USER)
   @Get(':id')
   async getFactura(@Param('id') id: string) {
     return this.facturasService.findOne(id);
   }
 
   @ApiOperation({ summary: 'Actualizar una factura' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN)
   @Put(':id')
   async updateFactura(
     @Param('id') id: string,
@@ -62,9 +62,9 @@ export class FacturasController {
   }
 
   @ApiOperation({ summary: 'Eliminar una factura' })
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles(Role.ADMIN)
+  // @ApiBearerAuth()
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @Roles(Role.ADMIN)
   @Delete(':id')
   async deleteFactura(@Param('id') id: string) {
     return this.facturasService.remove(id);

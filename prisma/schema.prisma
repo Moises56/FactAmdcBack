@@ -70,6 +70,7 @@ model Factura {
   id                 String    @id @default(uuid())
   mercado            String
   propietario        String
+  nombre_local       String
   numero_local       Int
   concepto           String
   mes                String
