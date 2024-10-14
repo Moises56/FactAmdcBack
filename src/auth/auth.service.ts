@@ -29,7 +29,7 @@ export class AuthService {
     }
 
     const { contrasena, ...result } = user;
-    // console.log(contrasena, result);
+    console.log(contrasena, result);
     return result;
   }
 
