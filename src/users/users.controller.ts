@@ -22,7 +22,7 @@ export class UsersController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Roles(Role.ADMIN)
-  @Post()
+  @Post('new')
   create(@Body() createUserDto: any) {
     return this.usersService.createUser(createUserDto);
   }
