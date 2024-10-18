@@ -8,6 +8,35 @@ export class FacturasService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createFacturaDto: CreateFacturaDto) {
+    // Obtener el año actual para el formato del correlativo.
+    const currentYear = new Date().getFullYear();
+
+    // Buscar la última factura del año actual.
+    const lastFactura = await this.prisma.factura.findFirst({
+      where: {
+        correlativo: {
+          startsWith: `Fact-${currentYear}-`, // Buscar facturas cuyo correlativo empiece con el año actual.
+        },
+      },
+      orderBy: { createdAt: 'desc' }, // Ordenar por fecha de creación en orden descendente para obtener la más reciente.
+      select: { correlativo: true },
+    });
+
+    // Extraer el último número del correlativo si existe, de lo contrario iniciar en 0.
+    const lastCorrelativoNumber = lastFactura?.correlativo
+      ? parseInt(lastFactura.correlativo.split('-').pop() || '0', 10)
+      : 0;
+
+    // Incrementar el número de correlativo.
+    const nextCorrelativoNumber = lastCorrelativoNumber + 1;
+
+    // Formar el nuevo correlativo en el formato `Fact-YYYY-N`.
+    const correlativo = `Fact-${currentYear}-${nextCorrelativoNumber}`;
+
+    // Asignar el correlativo al DTO antes de guardar la nueva factura.
+    createFacturaDto.correlativo = correlativo;
+
+    // Crear la nueva factura en la base de datos.
     const newFactura = await this.prisma.factura.create({
       data: createFacturaDto,
     });

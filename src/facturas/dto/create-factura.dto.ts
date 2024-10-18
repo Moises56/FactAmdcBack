@@ -41,8 +41,12 @@ export class CreateFacturaDto {
   @IsNotEmpty()
   permiso_operacion: string;
 
-  // Cambiado a localId para indicar que es un identificador de un local
   @IsString()
   @IsNotEmpty()
-  localId: string; // Asegúrate de recibir el ID del local
+  localId: string;
+
+  // Campo para el número correlativo
+  @IsString()
+  @IsNotEmpty()
+  correlativo: string;
 }

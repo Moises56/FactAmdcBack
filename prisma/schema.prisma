@@ -80,6 +80,7 @@ model Factura {
   permiso_operacion  String
   localId            String    // Relación con Local
   Local              Local     @relation(fields: [localId], references: [id])  // Relación con Local
+  correlativo        String    
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 }

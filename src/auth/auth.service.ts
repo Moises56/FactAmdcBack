@@ -41,6 +41,7 @@ export class AuthService {
       message: 'Inicio de sesión con éxito',
       status: HttpStatus.OK,
       user: user.nombre + ' ' + user.apellido,
+      email: user.correo,
       rol: user.role,
       idUser: user.id,
     };
